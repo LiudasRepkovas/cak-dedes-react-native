@@ -2,12 +2,17 @@ import React from "react";
 import { Text, FlatList, View, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const UserList = ({ users }) => {
+const UserList = (props) => {
+  const users = props.users;
+
   const navigation = useNavigation();
 
   return (
     <View>
       <FlatList
+        style={{
+          padding: 20,
+        }}
         data={users}
         renderItem={RenderUser}
         ItemSeparatorComponent={SeparatorComponent}
@@ -23,14 +28,33 @@ const UserList = ({ users }) => {
 };
 
 const SeparatorComponent = () => {
-  return <Text>---</Text>;
+  return <Text
+    style={{
+      padding: 5,
+    }}
+  
+  >---</Text>;
 };
 
 const RenderUser = ({ item }) => {
   return (
     <View>
-      <Text>Vardas: {item.name}</Text>
-      <Text>Pavardė: {item.surname}</Text>
+      <Text
+        style={{
+          fontWeight: "bold",
+          fontSize: 20
+        }}
+      >
+        Vardas: {item.name}
+      </Text>
+      <Text
+        style={{
+          fontWeight: "bold",
+          fontSize: 20
+        }}
+      >
+        Pavardė: {item.surname}
+      </Text>
     </View>
   );
 };
